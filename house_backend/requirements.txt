@@ -1,0 +1,8 @@
+fastapi
+icecream
+overrides
+pandas
+pendulum
+result
+rich
+uvicorn
