@@ -1,0 +1,95 @@
+main {
+  padding-top: 1em;
+}
+
+input {
+  /* max-width: 40%; */
+  text-align: center;
+  font-size: larger;
+}
+
+[role=group] {
+  margin-bottom: .3em;
+}
+
+.tag {
+  min-width: 33%;
+  border-radius: 20px;
+  color: white;
+  margin-top: 1px;
+  padding: 10px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.add {
+  background-color: rgba(0, 128, 0, 0.274);
+  border-color: rgba(0, 128, 0, 0.329);
+  color: green;
+  font-weight: 800;
+}
+.info_message {
+  color: blue;
+  text-align: center;
+  background-color: bisque;
+  border-color: blue;
+  margin: 1em;
+}
+.info {
+  color: black;
+  text-align: center;
+  background-color: white;
+  border-color: rgba(0, 128, 0, 0.329);
+}
+.delete {
+  background-color: rgba(128, 0, 0, 0.212);
+  border-color: rgba(128, 0, 0, 0.329);
+  color: red;
+  font-weight: 800;
+}
+.clean {
+  background-color: rgba(2, 124, 124, 0.212);
+  border-color: rgba(2, 124, 124, 0.212);
+  color: rgb(2, 124, 124);
+  font-weight: 800;
+}
+.check-box {
+  min-width: 20%;
+  margin: auto;
+  height: 50%;
+}
+.input-box {
+  text-align: center;
+  min-width: 30%;
+  margin: auto;
+  height: 50%;
+}
+.hidden {
+  display: none;
+}
+
+div .unit {
+  display: inline-block;
+  position: relative;
+}
+/* position the unit to the right of the wrapper */
+div .unit::after {
+  position: absolute;
+  top: 25%;
+  right: 2em;
+  transition: all .05s ease-in-out;
+}
+div .unit:hover::after,
+div .unit:focus-within::after {
+  right: 1.5em;
+}
+.kwh::after {
+  content: ' kwh';
+}
+.liters::after {
+  content: ' l';
+}
+.celsius::after {
+  content: ' °C';
+}
