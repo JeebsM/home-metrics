@@ -1,5 +1,5 @@
 {
-  "name": "house_ui",
+  "name": "meter_ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,8 @@
     "dev": "vite --port 5174",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "serve -s dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -16,7 +17,8 @@
     "axios": "^1.7.7",
     "i18next": "^23.15.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "serve": "^14.2.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

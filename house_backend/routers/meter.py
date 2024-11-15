@@ -10,9 +10,9 @@ from models.meter_v2 import Record_v2
 router = APIRouter()
 
 class ENV(StrEnum):
-    DEV = 'test.json',
-    PROD = 'data.json'
-STORAGE_FILE = ENV.DEV
+    DEV = 'local/test.json',
+    PROD = 'prod/data.json'
+STORAGE_FILE = ENV.PROD
 
 class Records(BaseModel):
     id: str

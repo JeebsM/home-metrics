@@ -1,0 +1,39 @@
+x-common:
+    - &common
+        networks:
+          - main
+    - &project_common
+      env_file:
+        - .env
+
+networks:
+    main:
+      driver: bridge
+      attachable: true
+
+services:
+  webserver:
+    <<: [*common, *project_common]
+    image: jeebsm/house_metric_backend:latest
+    container_name: webservice
+    environment:
+      - DEPLOY_ENV=prod
+    ports:
+      - 8000:8000
+    volumes:
+      - type: bind
+        source: /house_backend/storage
+        target: /house_backend/storage
+    restart: always
+    tty: true
+  ui:
+    <<: [*common, *project_common]
+    image: jeebsm/house_metric_frontend:latest
+    container_name: meter-ui
+    environment:
+      - DEPLOY_ENV=prod
+    ports:
+      - 443:3000
+      - 80:3000
+    restart: always
+    tty: true

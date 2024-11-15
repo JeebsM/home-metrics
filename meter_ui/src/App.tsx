@@ -20,12 +20,7 @@ import AddButton from "./components/buttons/AddButton";
 import DeleteButton from "./components/buttons/DeleteButton";
 import InfoButton from "./components/buttons/InfoButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  getRecord,
-  saveRecord,
-  Result,
-  getLastRecord,
-} from "./storage/DataStore";
+import { getRecord, saveRecord, Result, getLastRecord } from "./mods/DataStore";
 import axios from "axios";
 
 function App() {
@@ -183,10 +178,10 @@ function App() {
   useEffect(() => {
     let ignore = false;
     let defaultRecord = getDefaultRecord();
-    let uri = "http://localhost:443/meter/all";
+    let uri = "meter/all";
 
-    if (localStorage.getItem("test") != undefined) {
-      let raw_records: string = localStorage.getItem("test") || '""';
+    if (localStorage.getItem("records") != undefined) {
+      let raw_records: string = localStorage.getItem("records") || '""';
       let records = JSON.parse(raw_records);
       setRecord(records);
     } else {

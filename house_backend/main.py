@@ -11,6 +11,12 @@ app = FastAPI(docs_url=None)
 origins = [
     "http://localhost",
     "https://localhost",
+    "http://homelab",
+    "http://homelab.local",
+    "http://localhost:3000",
+    "https://localhost:3000",
+    "http://localhost:8081",
+    "https://localhost:8081",
     "http://localhost:5174",
     "https://localhost:5174",
 ]

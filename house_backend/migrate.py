@@ -8,7 +8,7 @@ from models.meter_v1 import Record_v1
 from models.meter_v2 import Record_v2
 
 T = TypeVar('T')
-STORAGE_PATH = Path('./storage')
+STORAGE_PATH = Path('./storage/prod')
 
 def read_raw_data() -> dict:
     filepath = Path('historic_data_raw.json')
