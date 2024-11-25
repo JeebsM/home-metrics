@@ -1,28 +1,27 @@
 x-common:
     - &common
         networks:
-          - main
+          - hm-backend
     - &project_common
       env_file:
         - .env
 
 networks:
-    main:
+    hm-backend:
       driver: bridge
       attachable: true
 
 services:
-  webserver:
+  house-backend:
     <<: [*common, *project_common]
     build:
       context: /house_backend
       dockerfile: Dockerfile
-    container_name: webservice
+    container_name: house-backend
     environment:
-      - DEPLOY_ENV=${DEPLOY_ENV}
+      - DEPLOY_ENV=development
     ports:
-      - 4430:443
-      - 8080:80
+      - 8000:8000
       - 5678:5678
     volumes:
       - type: bind
@@ -30,21 +29,20 @@ services:
         target: /house_backend
     restart: always
     tty: true
-  ui:
+  meter-ui:
     <<: [*common, *project_common]
     build:
       context: /meter_ui
       dockerfile: Dockerfile
     container_name: meter-ui
     environment:
-      - DEPLOY_ENV=${DEPLOY_ENV}
+      - DEPLOY_ENV=development
     ports:
-      - 443:443
-      - 8000:80
-      - 3000:3000
+      - 5173:5173
     volumes:
       - type: bind
-        source: /
-        target: /meter_ui
+        source: meter_ui/
+        target: /usr/app/src
+        read_only: true
     restart: always
     tty: true
