@@ -85,7 +85,7 @@ def main():
     raw_data: dict = read_raw_data()
     print(f'Raw data loaded: {len(raw_data)} records found.')
     data_v1: list[Record_v1] = parse_v1_data(raw_data)
-    sample_v1: Record_v1 = list(filter(lambda rec: rec.id == '060CSFJ4374Ze94lBZlz', data_v1))[0]
+    sample_v1: Record_v1 = list(filter(lambda rec: rec.id == 'cSfr3XXlKfzxaK0eW7lD', data_v1))[0]
     print(f'Raw data parsed: {len(data_v1)} records found.')
     print(f'Sample V1:')
     print(sample_v1)
