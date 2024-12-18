@@ -4,6 +4,7 @@ analyze
 .ipynb_checkpoints
 analyze.ipynb
 result.csv
+*.xlsx
 
 # Config files
 .env
