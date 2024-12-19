@@ -21,7 +21,7 @@ import DeleteButton from "./components/buttons/DeleteButton";
 import InfoButton from "./components/buttons/InfoButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getRecord, saveRecord, Result, getLastRecord } from "./mods/DataStore";
-import axios from "axios";
+import Datastore from "./utils/Datastore";
 
 function App() {
   let defaultRecord = getDefaultRecord();
@@ -178,25 +178,17 @@ function App() {
   useEffect(() => {
     let ignore = false;
     let defaultRecord = getDefaultRecord();
-    let uri = "meter/all";
 
-    if (localStorage.getItem("records") != undefined) {
-      let raw_records: string = localStorage.getItem("records") || '""';
-      let records = JSON.parse(raw_records);
-      setRecord(records);
-    } else {
-      axios
-        .get(uri)
-        .then((res) => {
-          let records_str: string = JSON.stringify(res.data);
-          localStorage.setItem("records", records_str);
-          setRecord(res.data);
-        })
-        .catch((err) => {
-          setInfoMessage(err.message);
-          setTimeout(() => setInfoMessage(""), displayTimeout);
-        });
-    }
+    const datastore = new Datastore();
+    let data = datastore.get("records");
+    data
+      .then((res: any) => {
+        setRecord(res);
+      })
+      .catch((err) => {
+        setInfoMessage(err.message);
+        setTimeout(() => setInfoMessage(""), displayTimeout);
+      });
 
     if (!ignore) handleDateChange(defaultRecord.record_date);
 
