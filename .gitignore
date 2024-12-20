@@ -5,6 +5,9 @@ analyze
 analyze.ipynb
 result.csv
 *.xlsx
+*.rdb
+*.aof
+*.aof.*
 
 # Config files
 .env
