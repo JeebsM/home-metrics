@@ -1,35 +1,50 @@
-x-common:
-    - &common
-        networks:
-          - main
-    - &project_common
-      env_file:
-        - .env
-
 networks:
-    main:
-      driver: bridge
-      attachable: true
+  hm-backend:
+    driver: bridge
+    attachable: true
+  hm-frontend:
+    driver: bridge
+    attachable: true
 
 services:
+  redis:
+    image: redis:latest
+    container_name: redis-db
+    networks:
+      - hm-backend
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - type: bind
+        source: var/storage/redis/
+        target: /data
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=2
+    command: bash -c "redis-server --appendonly yes"
   webserver:
-    <<: [*common, *project_common]
     image: jeebsm/house_metric_backend:latest
     container_name: webservice
+    networks:
+      - hm-backend
     environment:
       - DEPLOY_ENV=prod
     ports:
       - 8000:8000
     volumes:
       - type: bind
-        source: /house_backend/storage
+        source: /var/storage
         target: /house_backend/storage
     restart: always
     tty: true
   ui:
-    <<: [*common, *project_common]
     image: jeebsm/house_metric_frontend:latest
     container_name: meter-ui
+    networks:
+      - hm-backend
+      - hm-frontend
     environment:
       - DEPLOY_ENV=prod
     ports:
