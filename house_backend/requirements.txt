@@ -3,6 +3,7 @@ icecream
 overrides
 pandas
 pendulum
+redis
 result
 rich
 uvicorn
